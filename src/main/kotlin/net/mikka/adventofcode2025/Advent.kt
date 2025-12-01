@@ -5,10 +5,10 @@ import kotlin.reflect.KClass
 fun main() {
 
     val longRunning: List<KClass<*>> = listOf(
-            Dec05::class
+//            Dec05::class
     )
 
-    for (day in 1..24) {
+    for (day in 1..12) {
         try {
             val puzzle = Class.forName("net.mikka.adventofcode2025.Dec${formatDay(day)}").getDeclaredConstructor().newInstance()
             if (longRunning.any { puzzle::class == it }) {

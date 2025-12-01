@@ -1,5 +1,7 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
-    kotlin("jvm") version "2.1.20"
+    kotlin("jvm") version "1.6.10"
 }
 
 group = "net.mikka"
@@ -10,12 +12,14 @@ repositories {
 }
 
 dependencies {
-    testImplementation(kotlin("test"))
+    testImplementation("org.junit.jupiter:junit-jupiter:5.9.1")
+    testImplementation("org.assertj:assertj-core:3.21.0")
 }
 
-tasks.test {
+tasks.withType<Test> {
     useJUnitPlatform()
 }
-kotlin {
-    jvmToolchain(17)
+
+tasks.withType<KotlinCompile>() {
+    kotlinOptions.jvmTarget = "17"
 }
