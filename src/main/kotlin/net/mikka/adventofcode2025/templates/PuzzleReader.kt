@@ -21,8 +21,7 @@ class PuzzleReader {
 
     fun readPuzzlePageContent(): String {
         val today = LocalDate.now()
-        val puzzleUrl = PUZZLE_URL.format(today.year, 2)
-//        val puzzleUrl = PUZZLE_URL.format(today.year, today.dayOfMonth)
+        val puzzleUrl = PUZZLE_URL.format(today.year, today.dayOfMonth)
         println("puzzleUrl: $puzzleUrl")
         return URL(puzzleUrl).readText()
     }
