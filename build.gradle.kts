@@ -1,7 +1,11 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+val junitVersion = "junit"
+val assertjVersion = "3.21.0"
+val kotlinpoetVersion = "2.2.0"
+
 plugins {
-    kotlin("jvm") version "1.6.10"
+    kotlin("jvm") version "2.2.20"
 }
 
 group = "net.mikka"
@@ -12,14 +16,17 @@ repositories {
 }
 
 dependencies {
-    testImplementation("org.junit.jupiter:junit-jupiter:5.9.1")
-    testImplementation("org.assertj:assertj-core:3.21.0")
+    implementation("com.squareup:kotlinpoet:$kotlinpoetVersion")
+    testImplementation("org.junit.jupiter:junit-jupiter:$junitVersion")
+    testImplementation("org.assertj:assertj-core:$assertjVersion")
 }
 
 tasks.withType<Test> {
-    useJUnitPlatform()
+//    useJUnitPlatform()
 }
 
-tasks.withType<KotlinCompile>() {
-    kotlinOptions.jvmTarget = "17"
+tasks.withType<KotlinCompile>().configureEach {
+//    compilerOptions {
+//        jvmTarget = "17"
+//    }
 }
