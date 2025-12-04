@@ -1,5 +1,6 @@
 package net.mikka.adventofcode2025
 
+@Suppress("unused")
 class Dec01 : PuzzleDay<Int, Int>() {
 
     override fun getPuzzle1(): Puzzle<Int> {

@@ -1,5 +1,6 @@
 package net.mikka.adventofcode2025
 
+@Suppress("unused")
 class Dec03 : PuzzleDay<Long, Long>() {
 
     companion object {
