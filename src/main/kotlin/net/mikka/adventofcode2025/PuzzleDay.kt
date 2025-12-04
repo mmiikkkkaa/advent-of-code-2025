@@ -34,6 +34,6 @@ abstract class PuzzleDay<T1, T2> {
 //        }
 
         input = ResourceReader().readLinesFromResourceFile("/" + this::class.simpleName!!.lowercase() + ".txt")
-        return input
+        return input.filterNot { it.isBlank() }
     }
 }

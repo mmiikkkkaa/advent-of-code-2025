@@ -25,27 +25,27 @@ private fun generatePuzzleFile() {
         .addType(
             TypeSpec.classBuilder(className)
                 .addModifiers()
-                .superclass(PuzzleDay::class.parameterizedBy(Int::class, Int::class))
+                .superclass(PuzzleDay::class.parameterizedBy(Long::class, Long::class))
                 .addFunction(
                     FunSpec.builder("getPuzzle1")
-                        .returns(Puzzle::class.parameterizedBy(Int::class))
+                        .returns(Puzzle::class.parameterizedBy(Long::class))
                         .addModifiers(KModifier.OVERRIDE)
                         .addCode("return Puzzle01()")
                         .build()
                 )
                 .addFunction(
                     FunSpec.builder("getPuzzle2")
-                        .returns(Puzzle::class.parameterizedBy(Int::class))
+                        .returns(Puzzle::class.parameterizedBy(Long::class))
                         .addModifiers(KModifier.OVERRIDE)
                         .addCode("return Puzzle02()")
                         .build()
                 )
                 .addType(
                     TypeSpec.classBuilder("Puzzle01")
-                        .addSuperinterface(Puzzle::class.parameterizedBy(Int::class))
+                        .addSuperinterface(Puzzle::class.parameterizedBy(Long::class))
                         .addFunction(
                             FunSpec.builder("solve")
-                                .returns(Int::class)
+                                .returns(Long::class)
                                 .addModifiers(KModifier.OVERRIDE)
                                 .addParameter("input", List::class.parameterizedBy(String::class))
                                 .addStatement("TODO()")
@@ -55,10 +55,10 @@ private fun generatePuzzleFile() {
                 )
                 .addType(
                     TypeSpec.classBuilder("Puzzle02")
-                        .addSuperinterface(Puzzle::class.parameterizedBy(Int::class))
+                        .addSuperinterface(Puzzle::class.parameterizedBy(Long::class))
                         .addFunction(
                             FunSpec.builder("solve")
-                                .returns(Int::class)
+                                .returns(Long::class)
                                 .addModifiers(KModifier.OVERRIDE)
                                 .addParameter("input", List::class.parameterizedBy(String::class))
                                 .addStatement("TODO()")
@@ -86,8 +86,8 @@ private fun generatePuzzleTestFile() {
                 .addModifiers(KModifier.INTERNAL)
                 .superclass(
                     ClassName(packageName, "AbstractAdventOfCodeTest")
-                        .plusParameter(ClassName("kotlin", "Int"))
-                        .plusParameter(ClassName("kotlin", "Int"))
+                        .plusParameter(ClassName("kotlin", "Long"))
+                        .plusParameter(ClassName("kotlin", "Long"))
                 )
                 .addFunction(
                     FunSpec.builder("getInput")
@@ -114,36 +114,20 @@ private fun generatePuzzleTestFile() {
                 )
                 .addFunction(
                     FunSpec.builder("getExpectedValueForPuzzle1")
-                        .returns(Int::class)
+                        .returns(Long::class)
                         .addModifiers(KModifier.OVERRIDE)
                         .addCode("return " + puzzleReader.getPuzzleExampleResult())
                         .build()
                 )
                 .addFunction(
                     FunSpec.builder("getExpectedValueForPuzzle2")
-                        .returns(Int::class)
+                        .returns(Long::class)
                         .addModifiers(KModifier.OVERRIDE)
                         .addCode("return " + puzzleReader.getPuzzleExampleResult())
                         .build()
                 )
                 .build()
         )
-//        .addCode(
-//            """
-//            internal class $className : AbstractAdventOfCodeTest<Int, Int>() {
-//
-//              override fun getInput(): String = ""${'"'}
-//                 ${puzzleReader.getPuzzleInputExample()}
-//              ""${'"'}
-//
-//              override fun getInput2(): String = getInput()
-//
-//              override fun getExpectedValueForPuzzle1(): Int = ${puzzleReader.getPuzzleExampleResult()}
-//
-//              override fun getExpectedValueForPuzzle2(): Int = ${puzzleReader.getPuzzleExampleResult()}
-//            }
-//            """.trimIndent()
-//        )
         .build()
 
     val directory = Paths.get("", today.year.toString(), "src", "test", "kotlin").toAbsolutePath()

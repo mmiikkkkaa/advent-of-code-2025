@@ -1,6 +1,6 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val junitVersion = "junit"
+val junitVersion = "5.9.1"
 val assertjVersion = "3.21.0"
 val kotlinpoetVersion = "2.2.0"
 
@@ -22,7 +22,7 @@ dependencies {
 }
 
 tasks.withType<Test> {
-//    useJUnitPlatform()
+    useJUnitPlatform()
 }
 
 tasks.withType<KotlinCompile>().configureEach {
